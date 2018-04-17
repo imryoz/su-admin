@@ -1,0 +1,133 @@
+<div class="container-fluid">
+    <form class="md-form w-100" method="GET" ng-submit="responseById()" novalidate>
+      <h2>Playlist Details</h2>
+      <div class="row">
+        <div class="col-md-12 form-group pmd-textfield pmd-textfield-floating-label">
+          <label for="videolink" class="control-label">Playlist Link</label>
+          <input type="text" id="playlistlink" ng-model="link" name="playlistlink" class="form-control" required>
+        </div>
+      </div>
+      <div class="row after-get" style="display: none">   
+        <div class="col-md-4 form-group pmd-textfield pmd-textfield-label">
+          <label for="playlistname" class="control-label">Playlist Name</label>
+          <input type="text" id="playlistname" ng-model="name" name="playlistname" class="form-control" required>
+        </div>
+        <div class="col-md-4 group-fields clearfix row">
+          <div class="form-group pmd-textfield pmd-textfield-label">       
+            <label>Genre</label>
+            <select ng-model="genre" class="select-simple form-control pmd-select2">
+              <option></option>
+              <option>Comedy</option>
+              <option>Romantic</option>
+              <option>Thriller</option>
+              <option>Drama</option>
+              <option>Action</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-4 group-fields clearfix row">
+          <div class="form-group pmd-textfield pmd-textfield-label">       
+            <div class="group-fields clearfix row">
+              <label>Language</label>
+              <select ng-model="language" class="select-simple form-control pmd-select2">
+                <option></option>
+                <option>Telugu</option>
+                <option>Hindi</option>
+                <option>Tamil</option>
+              </select>
+            </div>
+          </div>
+        </div>   
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <button type="submit" class="btn btn-primary">Get</button>
+            <button id="savebtnpl" style="display:none" type="button" ng-click="savePlaylist(results)" class="btn btn-success after-get">Save</button>
+        </div>
+      </div>
+    </form><br>
+      <div ng-cloak>
+        {{result}}
+        <br>
+        <div ng-repeat='video in results.items'>
+          <div class="row">
+            <form method="POST" class="col-md-8" action="/watch">
+              <!-- <h4>ID: {{video.contentDetails.videoId}}</h4> -->
+              <!-- <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                <label for="videolink" class="control-label">Title</label>
+                <input type="text" id="title" ng-model="video.snippet.title" name="title" class="form-control" required>
+              </div> 
+              <label class="black-text">Title:</label>
+              <input style="padding-top: 0; margin-top: 0;" type="text" id="title" ng-model="video.snippet.title" name="title" class="form-control">
+              <div class="row">
+                <div class="col-md-6">
+                  <label class="black-text">Start at:</label>
+                  <input style="padding-top: 0; margin-top: 0;" type="text" id="start" name="start" class="form-control" ng-model="video.start" placeholder="Video begins at? (MM:SS)">
+                </div>
+                <div class="col-md-6">
+                  <label class="black-text">End at:</label>
+                  <input style="padding-top: 0; margin-top: 0;" type="text" id="end" name="end" class="form-control" ng-model="video.end" placeholder="Video ends at? (MM:SS)">
+                </div>
+              </div> -->
+
+              <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                <!-- <label for="videolink" class="control-label">Title</label> -->
+                <input type="text" id="title" ng-model="video.title" name="title" class="form-control" required>
+              </div> 
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group pmd-textfield pmd-textfield-label">
+                    <label for="starttime" class="control-label">Start Time</label>
+                    <input type="text" id="starttime" ng-model="video.start" class="form-control">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group pmd-textfield pmd-textfield-label">
+                    <label for="endtime" class="control-label">End Time</label>
+                    <input type="text" id="e'link'ndtime" ng-model="video.end" class="form-control">
+                  </div>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="group-fields clearfix row">
+                    <div class="form-group pmd-textfield pmd-textfield-floating-label">       
+                      <label>Genre</label>
+                      <select ng-model="genre" class="select-simple form-control pmd-select2">
+                        <option></option>
+                        <option>Comedy</option>
+                        <option>Romantic</option>
+                        <option>Thriller</option>
+                        <option>Drama</option>
+                        <option>Action</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="group-fields clearfix row">
+                    <div class="form-group pmd-textfield pmd-textfield-floating-label">       
+                      <label>Language</label>
+                      <select ng-model="language" class="select-simple form-control pmd-select2">
+                        <option></option>
+                        <option>Telugu</option>
+                        <option>Hindi</option>
+                        <option>Tamil</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button type="button" ng-click="videoUrl(video)" class="btn btn-primary">Preview</button>
+            </form>
+            <div class="col-md-4">
+              <iframe width="100%" height="200px" ng-src="{{video.url}}" frameborder="0" allowfullscreen></iframe>
+              <h5>{{video.title}}</h5>  
+            </div>
+          </div>
+          <hr>
+          <!-- <input type="text" name=""> -->
+      </div>
+    </div>
+</div>

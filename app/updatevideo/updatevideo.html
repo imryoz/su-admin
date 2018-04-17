@@ -1,0 +1,87 @@
+<div class="container-fluid">
+      <div ng-cloak>
+        <div>
+          <div class="row">
+      <div class="col-md-6">
+        <!-- <h1>{{saveresult}}</h1> -->
+        <div class="pmd-card pmd-z-depth pmd-card-custom-form">
+          <div class="pmd-card-body"> 
+              <h1>Update Video</h1>
+              <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                <!-- <label for="videolink" class="control-label">Video Title</label> -->
+                <input type="text" id="videolink" ng-model="results.title" class="form-control" disabled>
+                </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                    <!-- <label for="starttime" class="control-label">Start Time</label> -->
+                    <input type="text" id="starttime" ng-model="results.start" class="form-control">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                    <!-- <label for="endtime" class="control-label">End Time</label> -->
+                    <input type="text" id="endtime" ng-model="results.end" class="form-control">
+                  </div>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="group-fields clearfix row">
+                    <div class="form-group pmd-textfield pmd-textfield-floating-label">       
+                      <label>Genre</label>
+                      <select ng-model="results.genre" class="select-simple form-control pmd-select2">
+                        <option></option>
+                        <option>Comedy</option>
+                        <option>Romantic</option>
+                        <option>Thriller</option>
+                        <option>Drama</option>
+                        <option>Action</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="group-fields clearfix row">
+                    <div class="form-group pmd-textfield pmd-textfield-floating-label">       
+                      <label>Language</label>
+                      <select ng-model="results.language" class="select-simple form-control pmd-select2">
+                        <option></option>
+                        <option>Telugu</option>
+                        <option>Hindi</option>
+                        <option>Tamil</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                  <label for="regular1" class="control-label">
+                    Zip Code*
+                  </label>
+                  <input type="text" id="regular1" class="form-control">
+                </div>
+              </div> -->
+            </div>
+            <div class="pmd-card-actions">
+              <button style="padding: 2%" ng-click="videoUrl(results)" class="btn btn-primary next">Preview</button>
+              <button id="savebtn" style="padding: 2%; display: none" ng-click="saveVideo(results)" class="btn btn-success">Save</button>
+            </div>
+              <!-- <p class="help-block">Help text</p> -->
+        </div>
+      </div>
+      <div class="col-md-6">
+        {{result}}
+        <div>
+          <iframe width="100%" height="340px" frameborder="0" ng-src="{{results.url}}" allowfullscreen></iframe>
+          <h5>{{results.title}}</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
