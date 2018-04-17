@@ -70,6 +70,12 @@ function($scope, $log, $http, $timeout, $sce) {
     });
   }
   $scope.saveVideo = function(results) {
+      results["start"] = $scope.start || "";
+      results["end"] = $scope.end || "";
+      results["genre"] = $scope.genre || "";
+      results["language"] = $scope.language || "";
+      results["playlistName"] = $scope.playlistName || "";
+      results["link"] = $scope.link || "";
 	    $log.log(results);
       
 	    $http({
