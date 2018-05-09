@@ -56,7 +56,8 @@ function($scope, $log, $http, $timeout, $sce) {
       
       var videourl = "https://www.youtube.com/embed/"+video.id+"?rel=0&amp;showinfo=0&start="+results.start+"&end="+results.end
       var turl = $sce.trustAsResourceUrl(videourl)
-      results.url = turl
+      results.turl = turl
+      results.url = videourl
       videos.push(video)
 
       $scope.results = results;
@@ -69,13 +70,14 @@ function($scope, $log, $http, $timeout, $sce) {
       $scope.result = "Couldn't make API call at this moment. See browser console for more information.";
     });
   }
+
   $scope.saveVideo = function(results) {
       results["start"] = $scope.start || "";
       results["end"] = $scope.end || "";
       results["genre"] = $scope.genre || "";
       results["language"] = $scope.language || "";
       results["playlistName"] = $scope.playlistName || "";
-      results["link"] = $scope.link || "";
+      results["videoid"] = $scope.videoid || "";
 	    $log.log(results);
       
 	    $http({

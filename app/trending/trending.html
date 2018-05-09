@@ -1,0 +1,41 @@
+<div class="container-fluid">
+  <div class="component-box">
+        <!-- table card example -->
+        <div  class="pmd-card pmd-z-depth pmd-card-custom-view">
+          <div class="row">
+            <div class="col-md-12">
+              <input type="text" id="myInput" class="form-control" ng-model="searchh" ng-change="search()" placeholder="Search for videos..">
+            </div>
+          </div>
+          <div class="table-responsive">
+          <table id="example-checkbox" class="table pmd-table table-hover table-striped display responsive nowrap" cellspacing="0" width="100%">
+          <thead>
+            <tr>
+              <th>Select</th>
+              <th>Video Title</th>
+              <!-- <th>Playlist ID</th>
+              <th>Channel Name</th>
+              <th>Start date</th> -->
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="cursor: pointer" ng-repeat="item in videos track by item.title">
+                <td>
+                  <!-- <input class="pmd-checkbox" type="checkbox" ng-model="title" ng-change="changeValue(item)"/> -->
+                  <label class="pmd-checkbox pmd-checkbox-ripple-effect">
+                    <input type="checkbox" value="" class="pm-ini" ng-model="item.checked" ng-change="changeValue(item)">
+                    <span class="pmd-checkbox-label">&nbsp;</span>
+                  </label>
+                </td>
+                <td>{{item.title}}</td>
+                <!-- <td>{{item.playlistID}}</td>
+                <td>{{item.channelName}}</td>
+                <td>{{item.date}}</td> -->
+            </tr>
+          </tbody>
+        </table>
+          </div>
+        </div> <!-- table card example end -->
+      
+      </div>
+</div>

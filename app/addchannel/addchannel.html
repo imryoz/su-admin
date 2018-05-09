@@ -1,0 +1,66 @@
+<div class="container-fluid">
+  <div class="component-box">
+        <!-- table card example -->
+    <div  class="pmd-card pmd-z-depth pmd-card-custom-view">
+      <div class="table-responsive">
+        <table id="example-checkbox" class="table pmd-table table-hover table-striped display responsive nowrap" cellspacing="0" width="100%">
+          <thead>
+            <tr>
+              <th>Channel name</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="cursor: pointer" ng-repeat="item in channels">
+                <td>
+                  <a data-target="#channel{{$index}}" data-toggle="modal">
+                    <div class="media-left">
+                      <img ng-src="{{item.image}}" width="50" height="50">
+                      {{item.channeltitle}}
+                    </div>
+                  </a>
+                  <div tabindex="-1" class="modal fade" id="channel{{$index}}" style="display: none;" aria-hidden="true">
+                    <div class="modal-dialog modal-sm">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                          <h3 class="pmd-card-title-text">{{item.channeltitle}}</h3>
+                        </div>
+                        <div class="pmd-modal-media"> <img width="1184" height="666" class="img-responsive" id="image{{$index}}" ng-src="{{image_source}}" title="Click to add new Image" onclick="document.getElementById('fileInput').click();"> </div>
+                        <div class="modal-body">
+                          <form class="form-horizontal">
+                            <input id="fileInput" onchange="angular.element(this).scope().previewImage(this)" type="file" style="display:none;" />
+                          </form>
+                        </div>
+                        <div class="pmd-modal-action">
+                          <!-- <button data-dismiss="modal"  class="btn pmd-ripple-effect btn-danger" type="button">Delete Image</button> -->
+                          <button class="btn pmd-ripple-effect btn-primary" type="button" ng-click="saveImage(item)">Save Image</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <script type="text/javascript">
+                    function previewImage(input) {
+                      var imageid = $('[ng-controller="add"]').scope().streetName;
+                      if (input.files && input.files[0]) {
+                          var reader = new FileReader();
+                          reader.onload = function (e) {
+                              $('#image{{$index}}')
+                                  .attr('src', e.target.result)
+                                  .width(150)
+                                  .height(200);
+                          };
+
+                          reader.readAsDataURL(input.files[0]);
+                      }
+                  }
+                  </script> -->
+                </td>
+                <td><button id="delbtn" style="padding: 2%;" ng-click="deleteChannel(item); $event.stopPropagation();" class="btn btn-danger">Delete</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

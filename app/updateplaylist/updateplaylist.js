@@ -33,7 +33,8 @@ angular.module('myApp.updateplaylist', ['ngRoute'])
           $scope.name = results["playlistName"];
           
           for(var i=0; i<results.items.length; i++){
-            results.items[i].url = $sce.trustAsResourceUrl("https://www.youtube.com/embed/"+results.items[i].videoid+"?rel=0&amp;showinfo=0&start="+results.items[i].start+"&end="+results.items[i].end);
+            results.items[i].turl = $sce.trustAsResourceUrl("https://www.youtube.com/embed/"+results.items[i].videoid+"?rel=0&amp;showinfo=0&start="+results.items[i].start+"&end="+results.items[i].end);
+            results.items[i].url = "https://www.youtube.com/embed/"+results.items[i].videoid+"?rel=0&amp;showinfo=0&start="+results.items[i].start+"&end="+results.items[i].end;
           }
       }, function myError(response) {
           $scope.error = response.statusText;
@@ -43,7 +44,8 @@ angular.module('myApp.updateplaylist', ['ngRoute'])
       $scope.videoUrl = function(video) {
 	    var videourl = "https://www.youtube.com/embed/"+video.videoid+"?rel=0&amp;showinfo=0&start="+video.start+"&end="+video.end;
 	    var turl = $sce.trustAsResourceUrl(videourl);
-	    video.url = turl;
+      video.turl = turl;
+	    video.url = videourl;
 	    $log.log($scope.results);
 	  }
       $scope.updatePlaylist = function(item) {

@@ -41,7 +41,8 @@ angular.module('myApp.updatevideo', ['ngRoute'])
       $scope.videoUrl = function(video) {
   	    var videourl = "https://www.youtube.com/embed/"+video.videoid+"?rel=0&amp;showinfo=0&start="+video.start+"&end="+video.end;
   	    var turl = $sce.trustAsResourceUrl(videourl);
-  	    video.url = turl;
+        video.turl = turl;
+  	    video.url = videourl;
   	    $log.log($scope.results);
   	  }
 

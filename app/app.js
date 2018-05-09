@@ -6,10 +6,13 @@ angular.module('myApp', [
   'myApp.admin',
   'myApp.createplaylist',
   'myApp.editplaylist',
+  'myApp.addchannel',
   'myApp.updateplaylist',
   'myApp.addvideo',
   'myApp.editvideo',
   'myApp.updatevideo',
+  'myApp.trending',
+  // 'myApp.adverts',
   'myApp.version'
 ]).
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
@@ -18,6 +21,9 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
   $routeProvider.otherwise({redirectTo: '/admin'});
 }])
 .factory("playlist",function(){
+    return {};
+})
+.factory("channel",function(){
     return {};
 })
 .factory("video",function(){

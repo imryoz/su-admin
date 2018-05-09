@@ -50,7 +50,8 @@ angular.module('myApp.createplaylist', ['ngRoute'])
 	        
 	        var videourl = "https://www.youtube.com/embed/"+video.id+"?rel=0&amp;showinfo=0&start="+video.start+"&end="+video.end
 	        var turl = $sce.trustAsResourceUrl(videourl)
-	        results.items[i].url = turl
+	        results.items[i].turl = turl
+	        results.items[i].url = videourl
 
 	        videos.push(video)
 	      }
@@ -66,11 +67,11 @@ angular.module('myApp.createplaylist', ['ngRoute'])
 	  $scope.videoUrl = function(video) {
 	    var videourl = "https://www.youtube.com/embed/"+video.videoid+"?rel=0&amp;showinfo=0&start="+video.start+"&end="+video.end;
 	    var turl = $sce.trustAsResourceUrl(videourl);
-	    video.url = turl;
+	    video.url = videourl;
+	    video.turl = turl;
 	    $log.log($scope.results);
 	  }
 	  $scope.savePlaylist = function(results) {
-	    $log.log(results);
 	    results["genre"] = $scope.genre;
 	    results["language"] = $scope.language;
 	    results["playlistName"] = $scope.name;
@@ -80,6 +81,7 @@ angular.module('myApp.createplaylist', ['ngRoute'])
 	      results.items[i].language = $scope.language;
 	      results.items[i]["platlistName"] = $scope.name;
 	    }
+	    $log.log(results);
 	    $http({
 	        method: 'POST',
 	        url: "http://localhost:8090/save_playlist",
