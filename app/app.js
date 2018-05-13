@@ -12,7 +12,7 @@ angular.module('myApp', [
   'myApp.editvideo',
   'myApp.updatevideo',
   'myApp.trending',
-  // 'myApp.adverts',
+  'myApp.carousel',
   'myApp.version'
 ]).
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {

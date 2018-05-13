@@ -13,15 +13,48 @@ angular.module('myApp.trending', ['ngRoute'])
     function($rootScope, $scope, $window, $log, $http, $timeout, $sce, video) {
       $scope.video = video
       $scope.trending = {}
+      $scope.language = "Telugu";
+
+      $scope.getVideosAgain = function(){
+        $scope.videos = [];
+        $http({
+            method : "POST",
+            url : "http://localhost:8090/get_videos",
+            data: JSON.stringify({"language":$scope.language})
+        }).then(function mySuccess(response) {
+            $log.log(response.data);
+            $scope.videos = response.data;
+            $http({
+                method : "GET",
+                url : "http://localhost:8090/gettrending"
+            }).then(function mySuccess(response) {
+                $log.log(response.data);
+                for(var i=0; i<$scope.videos.length; i++){
+                  if(response.data[$scope.videos[i]["title"]]){
+                    $scope.videos[i]["checked"] = true;
+                    console.log($scope.videos);
+                  }
+                }
+            }, function myError(response) {
+                $log.log(response);
+                $scope.error = response.statusText;
+            });
+        }, function myError(response) {
+            $log.log(response);
+            $scope.error = response.statusText;
+        });
+      }
+
       $http({
-          method : "GET",
-          url : "http://159.65.147.192:8090/get_videos"
+          method : "POST",
+          url : "http://localhost:8090/get_videos",
+          data: JSON.stringify({"language":$scope.language})
       }).then(function mySuccess(response) {
           $log.log(response.data);
           $scope.videos = response.data;
           $http({
               method : "GET",
-              url : "http://159.65.147.192:8090/gettrending"
+              url : "http://localhost:8090/gettrending"
           }).then(function mySuccess(response) {
               $log.log(response.data);
               for(var i=0; i<$scope.videos.length; i++){
@@ -42,12 +75,13 @@ angular.module('myApp.trending', ['ngRoute'])
       $scope.changeValue = function(item) {
         var trending = {};
         trending[item.title] = item;
+        console.log(trending)
         if(item.checked){
           angular.copy(trending);
           $http({
               method : "POST",
-              url : "http://159.65.147.192:8090/trending",
-              data: JSON.stringify(trending),
+              url : "http://localhost:8090/trending",
+              data: JSON.stringify(item),
               headers: {'Content-Type': 'application/json'}
           }).then(function mySuccess(response) {
               $log.log(response);
@@ -58,8 +92,8 @@ angular.module('myApp.trending', ['ngRoute'])
           angular.copy(trending);
           $http({
               method : "POST",
-              url : "http://159.65.147.192:8090/removetrending",
-              data: JSON.stringify(trending),
+              url : "http://localhost:8090/removetrending",
+              data: JSON.stringify(item),
               headers: {'Content-Type': 'application/json'}
           }).then(function mySuccess(response) {
               $log.log(response);

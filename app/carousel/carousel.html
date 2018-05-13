@@ -1,0 +1,69 @@
+<div class="container-fluid">
+  <div class="row" id="card-masonry">
+   
+   <!--Statistics-->
+   <div class="col-xs-12 col-sm-12 col-md-12">
+    <div class="pmd-card pmd-z-depth statistics-content">      
+      <div class="pmd-card-body statistics">
+        <ul class="list-group list-inline">
+          <li ng-repeat="item in allImages" class="text-center myhover">
+            <a data-target="#channel{{$index}}" data-toggle="modal">
+              <br>
+              <img style="max-width:250px; min-height:0px; height:200px" class="img-responsive" id="image{{$index}}" ng-src="{{item.image}}" title="Click to add new Image">
+              <h2>{{item.title}}</h2>
+              <br>
+            </a>
+            <div tabindex="-1" class="modal fade" id="channel{{$index}}" style="display: none;" aria-hidden="true">
+              <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                  </div>
+                  <div class="pmd-modal-media"> <img style="max-width:250px; min-height:0px; height:200px" class="img-responsive" id="image{{$index}}" ng-src="{{item.image}}" title="Click to add new Image"> </div>
+                  <div class="modal-body">
+                    <form class="form-horizontal">
+                      <input id="fileInput" onchange="angular.element(this).scope().previewImage(this)" type="file" style="display:none;" />
+                    </form>
+                  </div>
+                  <div class="pmd-modal-action">
+                    <!-- <button data-dismiss="modal"  class="btn pmd-ripple-effect btn-danger" type="button">Delete Image</button> -->
+                    <button class="btn pmd-ripple-effect btn-danger" type="button" ng-click="deleteImage(item)">Delete Image</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="text-center myhover">
+            <a data-target="#channel" data-toggle="modal">
+              <br>
+              <i class="material-icons md-dark pmd-lg" aria-hidden="true">add</i>
+              <h2>Add Image</h2>
+              <br>
+            </a>
+            <div tabindex="-1" class="modal fade" id="channel" style="display: none;" aria-hidden="true">
+              <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                  </div>
+                  <div class="pmd-modal-media"> <img style="max-width:250px; min-height:0px; height:200px" class="img-responsive" id="image" ng-src="{{image_source}}" title="Click to add new Image" onclick="document.getElementById('fileInput').click();"> </div>
+                  <div class="modal-body">
+                    <form class="form-horizontal">
+                      <input id="fileInput" onchange="angular.element(this).scope().previewImage(this)" type="file" style="display:none;" />
+                    </form>
+                  </div>
+                  <div class="pmd-modal-action">
+                    <!-- <button data-dismiss="modal"  class="btn pmd-ripple-effect btn-danger" type="button">Delete Image</button> -->
+                    <button class="btn pmd-ripple-effect btn-primary" type="button" ng-click="saveImage()">Save Image</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      
+      <span class="btn-loader loader hidden">Loading...</span>
+    </div>
+   </div><!-- end statistics-->
+</div>
